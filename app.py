@@ -29,7 +29,7 @@ def webhook():
     incoming_msg = request.values.get("Body", "").strip().lower()
     response = MessagingResponse()
 
-    if incoming_msg == "start":
+    if incoming_msg == "start" or incoming_msg=="hello" or incoming_msg=="hi":
         manual_text = (
             "👋 Welcome to the *GenZ Slang Bot*! 🎉\n\n"
             "🔍 To find a slang meaning, just type the slang word and send it.\n"
