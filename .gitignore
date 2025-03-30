@@ -1,0 +1,49 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+*.pyo
+*.swp
+
+# Virtual environment
+venv/
+env/
+myenv/
+
+# Dependency files
+*.log
+*.sqlite3
+*.db
+
+# Package manager files
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Environment variables / credentials (if any)
+.env
+*.env
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Deployment files (optional)
+*.pid
+instance/
+web/__pycache__/
+
+# Ignore compiled Python packages
+*.egg-info/
+dist/
+build/
+
+# Flask-specific files
+instance/
+*.pyc
