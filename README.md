@@ -1,8 +1,8 @@
-GenZ ChatBot
+GenZ ChatBot:
 
 GenZ ChatBot is an AI-powered chatbot that provides definitions, examples, and synonyms for GenZ slang. It is designed to help users understand and translate modern slang into standard English.
 
-Features
+Features:
 
 Define GenZ slang words
 
@@ -12,7 +12,7 @@ WhatsApp bot integration
 
 Web scraping for real-time definitions
 
-Technologies Used
+Technologies Used:
 
 Programming Language: Python
 
@@ -22,9 +22,9 @@ Chatbot Integration: Twilio API for WhatsApp
 
 Database: No database required, uses real-time web scraping
 
-Installation
+Installation:
 
-Prerequisites
+Prerequisites:
 
 Python installed on your system
 
