@@ -16,11 +16,15 @@ def get_gif_url(search_term):
     return None
 
 def beautify_text(text):
-    """Cleans up and formats text for better readability."""
-    text = re.sub(r"([,.!?])([^\s])", r"\1 \2", text)
-    text = re.sub(r"([a-z])([A-Z])", r"\1 \2", text)
-    text = re.sub(r"(\w)/(\w)", r"\1 / \2", text)
-    text = text.replace('"', "“").replace('"', "”")
+    text = re.sub(r'([,.!?…])([^\s])', r'\1 \2', text) 
+    text = re.sub(r'([\U0001F600-\U0001F64F])([^\s])', r'\1 \2', text)
+    text = re.sub(r'\s*—\s*', ' — ', text) 
+    text = re.sub(r'“\s*', '“ ', text)  
+    text = re.sub(r'\s*”', ' ”', text)  
+    text = re.sub(r'([a-z])([A-Z])', r'\1 \2', text)
+    text = re.sub(r'(\w)/(\w)', r'\1 / \2', text)
+    text = re.sub(r'\s+', ' ', text).strip()
+    
     return text
 
 def fetch_slang_details(slang):
@@ -75,7 +79,7 @@ def fetch_slang_details(slang):
         for i,p in enumerate(blockquote_tag.find_all("p")):
             if i>=2:
                 break
-            for span in p.find_all("span"):  # Remove Twitter handles
+            for span in p.find_all("span"):  
                 span.extract()
             cleaned_text = p.get_text(separator=" ", strip=True)
             examples.append(cleaned_text)
@@ -101,19 +105,14 @@ def fetch_slang_details(slang):
                 if start_idx != -1 and end_idx != -1:
                     image_url = data_background_image_set[start_idx:end_idx].strip('"')
 
-    response_text = (
-        f"🔥 *Slang*: {title}\n"
-        f"🗣️ *Pronunciation*: {pronunciation}\n"
-        f"📖 *Meaning*:\n{meaning}\n"
-        f"📌 *Part of Speech*: \n{part_of_speech}\n"
-        f"📖 *Definition*:\n{definition}\n\n"
-        f"📜 *Examples*:\n{examples_text}\n\n\n"
-        f"🌍 *Origin*:\n{origin}\n\n\n"
-        f"📝 *Usage*:\n{usage}\n"
-    )
-    response_text = beautify_text(response_text)
+    return {
+    "basic_info": f"🔥 *Slang*: {title}\n🗣️ *Pronunciation*: {pronunciation}\n📌*Part of Speech*: {part_of_speech}\n📖 *Meaning*:\n{meaning}\n",
+    "definition_examples": f"📖 *Definition*:\n{definition}\n📜 *Examples*:\n{examples_text}",
+    "usage": f"📝 *Usage*:\n{usage}",
+    }, gif_url
+    # response_text = beautify_text(response_text)
 
-    return response_text,gif_url
+    # return response_text,gif_url
 
 
 # https://api.giphy.com/v1/gifs/search?api_key={Glc0XmulmxPgCC7eKqqp8138hfXvIQut}&q={pikachu}&limit=1
